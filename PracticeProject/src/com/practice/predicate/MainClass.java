@@ -2,6 +2,7 @@ package com.practice.predicate;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.function.BiPredicate;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
@@ -26,10 +27,17 @@ public class MainClass {
         System.out.println(andFiltered);
 
         // predicate with Negate
-        Predicate<String> startWithA=x -> x.startsWith("A");
-        List<String> charString=Arrays.asList("A","AA","AAA","B","BB");
+        Predicate<String> startWithA = x -> x.startsWith("A");
+        List<String> charString = Arrays.asList("A", "AA", "AAA", "B", "BB");
         List<String> notACharList = charString.stream().filter(startWithA.negate()).collect(Collectors.toList());
         System.out.println(notACharList);
+
+        //Bipredicate
+
+        BiPredicate<Integer, Integer> biPredicate = (x, y) -> x == y;
+
+        boolean filter=biPredicate.test(1,2);
+        System.out.println(filter);
     }
 }
 
@@ -41,4 +49,12 @@ public class MainClass {
     public interface Predicate<T> {
       boolean test(T t);
     }
+
+    In Java 8, BiPredicate is a functional interface, which accepts two arguments and returns a boolean, basically this BiPredicate is same with the Predicate, instead, it takes 2 arguments for the test.
+
+    @FunctionalInterface
+    public interface BiPredicate<T, U> {
+        boolean test(T t, U u);
+    }
+
  */
